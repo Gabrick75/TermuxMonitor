@@ -27,7 +27,7 @@ Clone this repository and run the script using the following command:
 
 ```bash
 git clone https://github.com/Gabrick75/TermuxMonitor
-cd Monitor.sh
+cd TermuxMonitor
 chmod +x Monitor.sh
 ./Monitor.sh
 ```
