@@ -1,10 +1,10 @@
 #!/bin/bash
 
-ACCESS_TOKEN="o.adpdkfuOzladwEp5vto3IjyDKJfqPxH4" #token
+ACCESS_TOKEN="" #token
 
 # Whatsapp API CallMeBot
-DESTINO="553592714934" #número de telefone
-API_KEY="8775869" #chave api
+DESTINO="" #número de telefone
+API_KEY="" #chave api
 URL="https://api.callmebot.com/whatsapp.php"
 
 
