@@ -7,7 +7,6 @@ DESTINO="" #número de telefone
 API_KEY="" #chave api
 URL="https://api.callmebot.com/whatsapp.php"
 
-
 #color
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -17,7 +16,7 @@ CYAN='\033[0;36m'
 MAGENTA='\033[0;35m'
 RESET='\033[0m'
 
-DEPENDENCIAS=("figlet" "jq" "curl" "ping")
+DEPENDENCIAS=("figlet" "jq" "curl" "ping" "termux-api")
 
 #verifica e instala dependências
 verificar_e_instalar() {
@@ -36,7 +35,7 @@ instalar_dependencias() {
         echo -e "${YELLOW}Deseja instalar $dep? (yes/no)${RESET}"
         read resposta
         if [[ "$resposta" == "yes" ]]; then
-            sudo apt-get install -y $dep
+            pkg install -y $dep
             if [[ $? -eq 0 ]]; then
                 echo -e "${GREEN}$dep instalado com sucesso.${RESET}"
             else
@@ -58,7 +57,7 @@ if [ "$faltando" = true ]; then
     instalar_dependencias
 fi
 
-
+echo -e "Esse código funciona melhor com sudo"
 echo -e "${GREEN}Limpando o terminal em 3 segundos...${RESET}"
 for i in {1..3}; do
   echo "$i"
@@ -151,7 +150,7 @@ while true; do
   USER=$(whoami)
 
   # Tabela para ser enviada no terminal e na notificação
-  TABLE="*SERVER ONLINE*\n\n Horário verificação: $DATE_TIME Tempo de atividade: $UPTIME\n\nUsuário atual: $USER\n\nStatus da bateria:\nNível: $BATTERY_LEVEL%\nCarregando: $CHARGING\nPlugada: $PLUGGED_IN\nCorrente: $BATTERY_CURRENT mA Temperatura: $BATTERY_TEMPERATURE°C $URGENT_MESSAGE\n\nTeste de rede\nPing: $PING\nLatência: $LATENCY ms\nIP Local: $LOCAL_IP\nIP Público: $PUBLIC_IP\n\nUso de memória RAM:\nTotal: $RAM_TOTAL MB\nEm uso: $RAM_USED MB\nLivre: $RAM_FREE MB\n\nUso de memória Swap:\nTotal: $SWAP_TOTAL MB\nEm uso: $SWAP_USED MB\nLivre: $SWAP_FREE MB\n\nUso de memória ROM:\nTotal: $ROM_TOTAL GB\nEm uso: $ROM_USED GB\nDisponível: $ROM_FREE_MB MB\nPercentual Usado: $ROM_PERCENT_USED\n\nUso de CPU:\n$CPU_USAGE%\n"
+  TABLE="*SERVER ONLINE*\n\n Horário verificação: $DATE_TIME Tempo de atividade: $UPTIME\n\nUsuário atual: $USER\n\nStatus da bateria:\nNível: $BATTERY_LEVEL%\nCarregando: $CHARGING\nPlugada: $PLUGGED_IN\nCorrente: $BATTERY_CURRENT mA\nTemperatura: $BATTERY_TEMPERATURE°C $URGENT_MESSAGE\n\nTeste de rede\nPing: $PING\nLatência: $LATENCY ms\nIP Local: $LOCAL_IP\nIP Público: $PUBLIC_IP\n\nUso de memória RAM:\nTotal: $RAM_TOTAL MB\nEm uso: $RAM_USED MB\nLivre: $RAM_FREE MB\n\nUso de memória Swap:\nTotal: $SWAP_TOTAL MB\nEm uso: $SWAP_USED MB\nLivre: $SWAP_FREE MB\n\nUso de memória ROM:\nTotal: $ROM_TOTAL GB\nEm uso: $ROM_USED GB\nDisponível: $ROM_FREE_MB MB\nPercentual Usado: $ROM_PERCENT_USED\n\nUso de CPU: $CPU_USAGE%\n"
 
   # Exibir a tabela
   echo -e $TABLE
